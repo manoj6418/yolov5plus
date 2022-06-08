@@ -144,7 +144,6 @@ class Model(nn.Module):
         return x
 
     def _initialize_biases(self, cf=None):  # initialize biases into Detect(), cf is class frequency
-        # https://arxiv.org/abs/1708.02002 section 3.3
         # cf = torch.bincount(torch.tensor(np.concatenate(dataset.labels, 0)[:, 0]).long(), minlength=nc) + 1.
         m = self.model[-1]  # Detect() module
         for mi, s in zip(m.m, m.stride):  # from
@@ -272,7 +271,6 @@ if __name__ == '__main__':
     # img = torch.rand(8 if torch.cuda.is_available() else 1, 3, 320, 320).to(device)
     # y = model(img, profile=True)
 
-    # Tensorboard (not working https://github.com/ultralytics/yolov5/issues/2898)
     # from torch.utils.tensorboard import SummaryWriter
     # tb_writer = SummaryWriter('.')
     # print("Run 'tensorboard --logdir=models' to view tensorboard at http://localhost:6006/")
